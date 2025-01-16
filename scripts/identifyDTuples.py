@@ -251,130 +251,128 @@ for order in ordersToPlot:
 			# DEBUGGING
 			print('Hypergraph:')
 			
+			# !!!!****This is now commented out, as we do not need these plots.****!!!!
 			
-			H = hnx.Hypergraph(edges)
-			cList = ['red' if w<0 else 'green' for w in weights]
-			layout_fn = lambda x: tmp
-			# print(CPDAGadjMat.columns.values)
-			# print(CPDAGgraph.vs['label'])
-			# print(list(g.vs()))
-			# print(edges)
-			# print(list(H.edges()))
-			# print(list(H.nodes()))
-			fig, ax = plt.subplots(figsize=[10, 10])
-			hnx.draw(H, ax=ax, layout = layout_fn,
-						 label_alpha=0,
-						 node_labels_kwargs={
-							'fontsize': 34
-						},
-						 edges_kwargs={
-							 'edgecolors': cList,
-							 'linewidths': 3,
-							 'dr': 0.05
-						 },
-						 **kwargs)  
-			ly = np.array([x for x in tmp.values()])
-			for i, v in enumerate(g.vs['label']):
-				plt.text(ly[i][0] - 0.0, ly[i][1], v, fontsize=40)
-			plt.show()
-			buf = io.BytesIO()
-			plt.savefig(buf)
-			buf.seek(0)
-			plotHypergraph[ID] = fromImToArr(Image.open(buf))
-			buf.seek(0)
-			buf.truncate(0)
-			plt.clf()
-			plt.close()
+			# H = hnx.Hypergraph(edges)
+			# cList = ['red' if w<0 else 'green' for w in weights]
+			# layout_fn = lambda x: tmp
+
+
+
+			# fig, ax = plt.subplots(figsize=[10, 10])
+			# hnx.draw(H, ax=ax, layout = layout_fn,
+			# 			 label_alpha=0,
+			# 			 node_labels_kwargs={
+			# 				'fontsize': 34
+			# 			},
+			# 			 edges_kwargs={
+			# 				 'edgecolors': cList,
+			# 				 'linewidths': 3,
+			# 				 'dr': 0.05
+			# 			 },
+			# 			 **kwargs)  
+			# ly = np.array([x for x in tmp.values()])
+			# for i, v in enumerate(g.vs['label']):
+			# 	plt.text(ly[i][0] - 0.0, ly[i][1], v, fontsize=40)
+			# plt.show()
+			# buf = io.BytesIO()
+			# plt.savefig(buf)
+			# buf.seek(0)
+			# plotHypergraph[ID] = fromImToArr(Image.open(buf))
+			# buf.seek(0)
+			# buf.truncate(0)
+			# plt.clf()
+			# plt.close()
 
 			#  ************************ CPDAG ************************ 
 			# DEBUGGING
-			print('CPDAG:')
+			# print('CPDAG:')
 			
 
-			fig, ax = plt.subplots(figsize=[6, 6])
-			ig.plot(g, layout=layout_c, edge_arrow_size=20, edge_arrow_width=10,
-					vertex_size=80/f, vertex_color='lightgrey',
-					target=ax)
-			# Have to add labels manually -- igraph does not work properly with matplotlib backend
-			for i, v in enumerate(g.vs['label']):
-				plt.text(layout_c[i][0] - 0.0, layout_c[i][1]-0.03, v, fontsize=40)
-			plt.xlim(-1.2, 1.2)
-			plt.ylim(-1.2, 1.2)
-			ax.axis('off')
-			buf = io.BytesIO()
-			plt.savefig(buf)
-			buf.seek(0)
-			plotCPDAG[ID] = fromImToArr(Image.open(buf))
-			buf.seek(0)
-			buf.truncate(0)
-			plt.clf()
-			plt.close()
+			# fig, ax = plt.subplots(figsize=[6, 6])
+			# ig.plot(g, layout=layout_c, edge_arrow_size=20, edge_arrow_width=10,
+			# 		vertex_size=80/f, vertex_color='lightgrey',
+			# 		target=ax)
+			# # Have to add labels manually -- igraph does not work properly with matplotlib backend
+			# for i, v in enumerate(g.vs['label']):
+			# 	plt.text(layout_c[i][0] - 0.0, layout_c[i][1]-0.03, v, fontsize=40)
+			# plt.xlim(-1.2, 1.2)
+			# plt.ylim(-1.2, 1.2)
+			# ax.axis('off')
+			# buf = io.BytesIO()
+			# plt.savefig(buf)
+			# buf.seek(0)
+			# plotCPDAG[ID] = fromImToArr(Image.open(buf))
+			# buf.seek(0)
+			# buf.truncate(0)
+			# plt.clf()
+			# plt.close()
 
 			#  ************************ PCA embeddings ************************ 
 
 			# DEBUGGING
-			print('PCA:')
+			# print('PCA:')
 			
 
-			fig, ax = plt.subplots(1, len(geneTuple), figsize=[20, 4])
-			for i, g in enumerate(genes[geneTuple]):
-				sc.pl.embedding(scObj,'pca', color=g, 
-									size=30, color_map="viridis", add_outline=True, show=False, frameon=False, ax = ax[i])
-				tmpFig = plt.gcf()
-				tmpFig.axes[-1].remove()
-			buf = io.BytesIO()
-			plt.savefig(buf)
-			buf.seek(0)
-			plotPCA[ID] = fromImToArr(Image.open(buf))
-			buf.seek(0)
-			buf.truncate(0)
-			plt.clf()
-			plt.close() 
+			# fig, ax = plt.subplots(1, len(geneTuple), figsize=[20, 4])
+			# for i, g in enumerate(genes[geneTuple]):
+			# 	sc.pl.embedding(scObj,'pca', color=g, 
+			# 						size=30, color_map="viridis", add_outline=True, show=False, frameon=False, ax = ax[i])
+			# 	tmpFig = plt.gcf()
+			# 	tmpFig.axes[-1].remove()
+			# buf = io.BytesIO()
+			# plt.savefig(buf)
+			# buf.seek(0)
+			# plotPCA[ID] = fromImToArr(Image.open(buf))
+			# buf.seek(0)
+			# buf.truncate(0)
+			# plt.clf()
+			# plt.close() 
 
 			#  ************************ Upset plots ************************ 
 			
 			# DEBUGGING
-			print('Upset:')
+			# print('Upset:')
 			
 			
-			unConditionedGenes = trainDat.iloc[:, geneTuple]
+			# unConditionedGenes = trainDat.iloc[:, geneTuple]
 
 
-			if args.estimationMode=='MFI':
-				conditionedGenes = conditionOnMB(geneTuple, MCMCgraph, trainDat, mode='Min')
-				fig = plt.figure(figsize=[10, 10])
-				buf = io.BytesIO()
-				plotUpsetPlot(d = conditionedGenes,fig=fig, legend=False, title = 'Conditioned on MB', filename=buf, save=True)
-				buf.seek(0)
-				plotUpset_cond[ID] = fromImToArr(Image.open(buf))
-				buf.seek(0)
-				buf.truncate(0)
-				plt.clf()
-				plt.close()
+			# if args.estimationMode=='MFI':
+			# 	conditionedGenes = conditionOnMB(geneTuple, MCMCgraph, trainDat, mode='Min')
+			# 	fig = plt.figure(figsize=[10, 10])
+			# 	buf = io.BytesIO()
+			# 	plotUpsetPlot(d = conditionedGenes,fig=fig, legend=False, title = 'Conditioned on MB', filename=buf, save=True)
+			# 	buf.seek(0)
+			# 	plotUpset_cond[ID] = fromImToArr(Image.open(buf))
+			# 	buf.seek(0)
+			# 	buf.truncate(0)
+			# 	plt.clf()
+			# 	plt.close()
 			
-			else:
-				# create empty plot for conditioned genes when not using MFI estimation, since MFI is likely not estimable.
-				conditionedGenes = unConditionedGenes
-				fig = plt.figure(figsize=[10, 10])
-				buf = io.BytesIO()
-				plt.savefig(buf)
-				buf.seek(0)
-				plotUpset_cond[ID] = fromImToArr(Image.open(buf))
-				buf.seek(0)
-				buf.truncate(0)
-				plt.clf()
-				plt.close()
+			# else:
+			# 	# create empty plot for conditioned genes when not using MFI estimation, since MFI is likely not estimable.
+			# 	conditionedGenes = unConditionedGenes
+			# 	fig = plt.figure(figsize=[10, 10])
+			# 	buf = io.BytesIO()
+			# 	plt.savefig(buf)
+			# 	buf.seek(0)
+			# 	plotUpset_cond[ID] = fromImToArr(Image.open(buf))
+			# 	buf.seek(0)
+			# 	buf.truncate(0)
+			# 	plt.clf()
+			# 	plt.close()
 				
 
-			fig = plt.figure(figsize=[10, 10])
-			buf = io.BytesIO()
-			plotUpsetPlot(d = unConditionedGenes,fig=fig, legend=False, title = 'Unconditioned', filename=buf, save=True)
-			buf.seek(0)
-			plotUpset_uncond[ID] = fromImToArr(Image.open(buf))
-			buf.seek(0)
-			buf.truncate(0)
-			plt.clf()
-			plt.close()
+			# fig = plt.figure(figsize=[10, 10])
+			# buf = io.BytesIO()
+			# plotUpsetPlot(d = unConditionedGenes,fig=fig, legend=False, title = 'Unconditioned', filename=buf, save=True)
+			# buf.seek(0)
+			# plotUpset_uncond[ID] = fromImToArr(Image.open(buf))
+			# buf.seek(0)
+			# buf.truncate(0)
+			# plt.clf()
+			# plt.close()
 			
 
 			#  ************************ Calculate deviations ************************ 
@@ -399,86 +397,87 @@ for order in ordersToPlot:
 	else: enrichments[f'n{order}'] = []
 		
 #  ************************ PCA embedding on max deviating state ************************ 
+# ALSO commented out because we do not need these plots.
+# # DEBUGGING
+# print('Before embedding:')
 
-# DEBUGGING
-print('Before embedding:')
 
-
-for order in ordersToPlot:
-	for devs, pvals, interactors in enrichments[f'n{order}']:
-		ID = '_'.join(genes[interactors])
+# for order in ordersToPlot:
+# 	for devs, pvals, interactors in enrichments[f'n{order}']:
+# 		ID = '_'.join(genes[interactors])
 		
-		# maxDevState is the most deviating state
-		maxDevState = format(np.argmax(devs), f"0{order}b")
+# 		# maxDevState is the most deviating state
+# 		maxDevState = format(np.argmax(devs), f"0{order}b")
 
-		# The find the PCA coordinates of cells/observations that are in this maxDevState
-		maxDevState_embedded = scObj.obsm['X_pca'][(scObj.X[:, interactors] == np.array(list(maxDevState)).astype(float)).all(axis=1)]
+# 		# The find the PCA coordinates of cells/observations that are in this maxDevState
+# 		maxDevState_embedded = scObj.obsm['X_pca'][(scObj.X[:, interactors] == np.array(list(maxDevState)).astype(float)).all(axis=1)]
 
-		xs = scObj.obsm['X_pca'][:, 0]
-		ys = scObj.obsm['X_pca'][:, 1]
-		plt.plot(xs, ys, 'o', color = viridis(0), alpha=0.1)
-		plt.plot(maxDevState_embedded[:, 0], maxDevState_embedded[:, 1], 'o', color = viridis(0.99), alpha=0.9)
-		plt.title(', '.join(genes[interactors]) + ' = ' + ', '.join(maxDevState), fontsize=20)
-		plt.xticks([])
-		plt.yticks([])
+# 		xs = scObj.obsm['X_pca'][:, 0]
+# 		ys = scObj.obsm['X_pca'][:, 1]
+# 		plt.plot(xs, ys, 'o', color = viridis(0), alpha=0.1)
+# 		plt.plot(maxDevState_embedded[:, 0], maxDevState_embedded[:, 1], 'o', color = viridis(0.99), alpha=0.9)
+# 		plt.title(', '.join(genes[interactors]) + ' = ' + ', '.join(maxDevState), fontsize=20)
+# 		plt.xticks([])
+# 		plt.yticks([])
 
-		buf = io.BytesIO()
-		plt.savefig(buf)
-		buf.seek(0)
-		plotMaxDev[ID] = fromImToArr(Image.open(buf))
-		buf.seek(0)
-		buf.truncate(0)
-		plt.clf()
-		plt.close()
-		# plt.savefig(f'{ID}_Expression_maxDevState.png')
-		plt.close('all') 
+# 		buf = io.BytesIO()
+# 		plt.savefig(buf)
+# 		buf.seek(0)
+# 		plotMaxDev[ID] = fromImToArr(Image.open(buf))
+# 		buf.seek(0)
+# 		buf.truncate(0)
+# 		plt.clf()
+# 		plt.close()
+# 		# plt.savefig(f'{ID}_Expression_maxDevState.png')
+# 		plt.close('all') 
 
 
 #  ************************ Plot summary figures ************************ 
 # DEBUGGING
-print('Before summary figs:')
+# print('Before summary figs:')
 
 
-sns.set_style("white")
+# sns.set_style("white")
 
-for order in ordersToPlot:
-	# DEBUGGING
-	print(f'Order: {order}')
+# for order in ordersToPlot:
+# 	# DEBUGGING
+# 	print(f'Order: {order}')
 	
 
-	if len(HHOIs[f'n{order}'])>0:
-		for w, geneTuple in HHOIs[f'n{order}'][:, [0, -1]]:
-			ID = '_'.join(genes[geneTuple])	  
-			fig = plt.figure(figsize=(15, 10))
+# 	if len(HHOIs[f'n{order}'])>0:
+# 		for w, geneTuple in HHOIs[f'n{order}'][:, [0, -1]]:
+# 			ID = '_'.join(genes[geneTuple])	 
 
-			# Defining custom axes to position individial plots. 
-			axCPDAG = fig.add_axes([0, 0.66, 0.33, 0.33])
-			axPC = fig.add_axes([0.33, 0.66, 0.33, 0.33])
-			axHOI = fig.add_axes([0.66, 0.66, 0.33, 0.33])
-			axEXP = fig.add_axes([0., 0.33, 0.99, 0.33])
+# 			fig = plt.figure(figsize=(15, 10))
 
-			axUPS1 = fig.add_axes([0, 0, 0.33, 0.33])
-			axUPS2 = fig.add_axes([0.33, 0, 0.33, 0.33])
-			axEXP_maxDev = fig.add_axes([0.66, 0.0, 0.33, 0.33])
+# 			# Defining custom axes to position individial plots. 
+# 			axCPDAG = fig.add_axes([0, 0.66, 0.33, 0.33])
+# 			axPC = fig.add_axes([0.33, 0.66, 0.33, 0.33])
+# 			axHOI = fig.add_axes([0.66, 0.66, 0.33, 0.33])
+# 			axEXP = fig.add_axes([0., 0.33, 0.99, 0.33])
 
-			axes = [axCPDAG, axPC, axHOI, axEXP, axEXP_maxDev, axUPS1, axUPS2]
+# 			axUPS1 = fig.add_axes([0, 0, 0.33, 0.33])
+# 			axUPS2 = fig.add_axes([0.33, 0, 0.33, 0.33])
+# 			axEXP_maxDev = fig.add_axes([0.66, 0.0, 0.33, 0.33])
 
-			for a in axes:
-				a.axis('off')
+# 			axes = [axCPDAG, axPC, axHOI, axEXP, axEXP_maxDev, axUPS1, axUPS2]
 
-			axCPDAG.imshow(plotCPDAG[ID])
-			axHOI.imshow(plotHypergraph[ID][100:-100, 100:-50])
-			axEXP.imshow(plotPCA[ID][:, :, :])
-			axEXP_maxDev.imshow(plotMaxDev[ID][:, :, :])
+# 			for a in axes:
+# 				a.axis('off')
 
-			axUPS1.imshow(plotUpset_cond[ID][:, :])
-			axUPS2.imshow(plotUpset_uncond[ID][:, :])
+# 			axCPDAG.imshow(plotCPDAG[ID])
+# 			axHOI.imshow(plotHypergraph[ID][100:-100, 100:-50])
+# 			axEXP.imshow(plotPCA[ID][:, :, :])
+# 			axEXP_maxDev.imshow(plotMaxDev[ID][:, :, :])
 
-			plt.savefig(f'{ID}_summary.png')
-			plt.close(fig) 
+# 			axUPS1.imshow(plotUpset_cond[ID][:, :])
+# 			axUPS2.imshow(plotUpset_uncond[ID][:, :])
 
-# DEBUGGING
-print('After summary figs:')
+# 			plt.savefig(f'{ID}_summary.png')
+# 			plt.close(fig) 
+
+# # DEBUGGING
+# print('After summary figs:')
 
 
 # Construct a dataframe with the deviations of each positively enriched state:
