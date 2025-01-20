@@ -335,11 +335,11 @@ for order in ordersToPlot:
 			# print('Upset:')
 			
 			
-			# unConditionedGenes = trainDat.iloc[:, geneTuple]
+			unConditionedGenes = trainDat.iloc[:, geneTuple]
 
 
-			# if args.estimationMode=='MFI':
-			# 	conditionedGenes = conditionOnMB(geneTuple, MCMCgraph, trainDat, mode='Min')
+			if args.estimationMode=='MFI':
+				conditionedGenes = conditionOnMB(geneTuple, MCMCgraph, trainDat, mode='Min')
 			# 	fig = plt.figure(figsize=[10, 10])
 			# 	buf = io.BytesIO()
 			# 	plotUpsetPlot(d = conditionedGenes,fig=fig, legend=False, title = 'Conditioned on MB', filename=buf, save=True)
@@ -350,9 +350,9 @@ for order in ordersToPlot:
 			# 	plt.clf()
 			# 	plt.close()
 			
-			# else:
-			# 	# create empty plot for conditioned genes when not using MFI estimation, since MFI is likely not estimable.
-			# 	conditionedGenes = unConditionedGenes
+			else:
+				# create empty plot for conditioned genes when not using MFI estimation, since MFI is likely not estimable.
+				conditionedGenes = unConditionedGenes
 			# 	fig = plt.figure(figsize=[10, 10])
 			# 	buf = io.BytesIO()
 			# 	plt.savefig(buf)
