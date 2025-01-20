@@ -229,8 +229,8 @@ workflow {
     utils = "${projectDir}/scripts/utilities.py"
 
     ch_empty_userGenes = file("${projectDir}/EMPTY_userGenes")
-    ch_empty_doubletFile = file("${projectDir}/EMPTY_doubletFile")
-    ch_empty_genesToOne = file("${projectDir}/EMPTY_genesToOne")
+    ch_empty_doubletFile = false
+    ch_empty_genesToOne = false
 
     makeData(script_makeTrainingData,
             params.rawDataPath,
